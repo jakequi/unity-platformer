@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferTimer -= Time.deltaTime;
         }
 
-        if (jumpBufferTimer >= 0f && coyoteTimer > 0f){
+        if (coyoteTimer > 0f && jumpBufferTimer > 0f) {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpHeight);
             jumpBufferTimer = 0f;
         }
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonUp("Jump") && rb2d.velocity.y > 0f)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f);
-            coyoteTimer = 0;
+            coyoteTimer = 0f;
         }
     }
 
