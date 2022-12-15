@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb2d;
-    [SerializeField] CapsuleCollider2D capsulecollider2d;
-    [SerializeField] BoxCollider2D boxcollider2d;
+    [SerializeField] PolygonCollider2D polygonCollider2D;
+    [SerializeField] BoxCollider2D boxCollider2d;
     [SerializeField] Animator animator;
 
     [SerializeField] float moveSpeed = 5;
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
      void Jump() {
-        isGrounded = boxcollider2d.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        isGrounded = boxCollider2d.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
         if(isGrounded){
             coyoteTimer = coyoteTime;
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ClimbLadder(){
         float vertical = Input.GetAxisRaw("Vertical");
-        if(boxcollider2d.IsTouchingLayers(LayerMask.GetMask("Climbing"))){
+        if(boxCollider2d.IsTouchingLayers(LayerMask.GetMask("Climbing"))){
             animator.SetBool("isClimbing", true);
             rb2d.gravityScale = 0;
             rb2d.velocity = new Vector2(rb2d.velocity.x, vertical * climbSpeed);
