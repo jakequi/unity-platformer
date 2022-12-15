@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else{
             rb2d.gravityScale = gravityScaleAtStart;
+            animator.SetBool("isClimbing", false);
         }
     }
 }
