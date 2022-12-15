@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     float gravityScaleAtStart;
     float coyoteTimer;
     float jumpBufferTimer;
-    float moveInput;
 
     bool isGrounded;
 
@@ -47,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Jump() {
+     void Jump() {
         isGrounded = boxcollider2d.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
         if(isGrounded){
@@ -76,13 +74,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FlipSprite(){
-        bool playerHasHorizontalSpeed = Mathf.Abs(rb2d.velocity.x) > Mathf.Epsilon;
-        if(playerHasHorizontalSpeed){
-            transform.localScale = new Vector2 (Mathf.Sign(rb2d.velocity.x), 1f);
-        }
-    }
-
     void ClimbLadder(){
         float vertical = Input.GetAxisRaw("Vertical");
         if(boxcollider2d.IsTouchingLayers(LayerMask.GetMask("Climbing"))){
@@ -97,3 +88,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
+/*     public void OnJump(InputAction.CallbackContext context) {
+        if (context.performed){
+            jumpBufferTimer = jumpBufferTime;
+        }
+
+        if(context.canceled && rb2d.velocity.y > 0f)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f);
+            coyoteTimer = 0f;
+        }
+    }
+
+    void JumpCheck(){
+        isGrounded = boxcollider2d.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        if(isGrounded){
+            coyoteTimer = coyoteTime;
+        }
+        else {
+            coyoteTimer -= Time.deltaTime;
+        }
+
+        if (jumpBufferTimer > 0f && coyoteTimer > 0f){
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpHeight);
+            jumpBufferTimer = 0f;
+        }
+        jumpBufferTimer -= Time.deltaTime;
+    } */
