@@ -40,7 +40,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3883526464861477045
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -57,7 +57,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!212 &3883526464861477044
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1423637637
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 2138430403, guid: be18859dc8da73d4792413416d7951f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3.5
+  m_GravityScale: 3.75
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -148,7 +148,7 @@ MonoBehaviour:
   boxCollider2d: {fileID: 2130215112}
   animator: {fileID: 3883526464861477045}
   moveSpeed: 6
-  jumpHeight: 13
+  jumpHeight: 15
   climbSpeed: 5
   coyoteTime: 0.15
   jumpBufferTime: 0.1
@@ -165,18 +165,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029803753, y: -0.45062578}
+  m_Offset: {x: -0.029803753, y: -0.49733222}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.032258, y: 1.032258}
+    oldSize: {x: 1.1428572, y: 1.1428572}
     newSize: {x: 1.032258, y: 1.032258}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.41517735, y: 0.1951673}
+  m_Size: {x: 0.41517735, y: 0.14659238}
   m_EdgeRadius: 0
 --- !u!114 &2130215118
 MonoBehaviour:
@@ -293,7 +293,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.032258, y: 1.032258}
+    oldSize: {x: 1.1428572, y: 1.1428572}
     newSize: {x: 1.032258, y: 1.032258}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
