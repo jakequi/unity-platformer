@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb2d;
+    [SerializeField] PhysicsMaterial2D dead;
     [SerializeField] PolygonCollider2D polygonCollider2D;
     [SerializeField] BoxCollider2D boxCollider2d;
     [SerializeField] Animator animator;
@@ -18,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     float gravityScaleAtStart;
     float coyoteTimer;
     float jumpBufferTimer;
-
     bool isGrounded;
+    bool isAlive = true;
 
 
     void Start()
@@ -29,9 +30,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(!isAlive){return;}
         Move();
         Jump();
         ClimbLadder();
+        Die();
     }
 
     void Move(){
@@ -86,6 +89,16 @@ public class PlayerMovement : MonoBehaviour
         else{
             rb2d.gravityScale = gravityScaleAtStart;
             animator.SetBool("isClimbing", false);
+        }
+    }
+
+    void Die(){
+        if(polygonCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy"))){
+            rb2d.velocity = new Vector2(transform.localScale.x *-7.5f, 7.5f);
+            polygonCollider2D.sharedMaterial = dead;
+            polygonCollider2D.sharedMaterial = dead;
+            isAlive = false;
+            animator.SetTrigger("isDead");
         }
     }
 }
