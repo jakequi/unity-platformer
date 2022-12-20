@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Platforms
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - Player
   - Background
   - Bouncing
-  - Enemy
-  - 
-  - 
+  - Enemies
+  - Hazards
+  - Bullet
   - 
   - 
   - 
@@ -48,18 +49,21 @@ TagManager:
   - name: Platforms
     uniqueID: 2610337559
     locked: 0
-  - name: Water
-    uniqueID: 642541339
-    locked: 0
   - name: Climbing
     uniqueID: 3635304905
+    locked: 0
+  - name: Hazards
+    uniqueID: 1433119019
     locked: 0
   - name: Bouncing
     uniqueID: 2974202679
     locked: 0
-  - name: Enemy
+  - name: Enemies
     uniqueID: 1708172881
     locked: 0
   - name: Player
     uniqueID: 2871329659
+    locked: 0
+  - name: Water
+    uniqueID: 642541339
     locked: 0

@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb2d;
-    [SerializeField] PhysicsMaterial2D dead;
+    [SerializeField] PhysicsMaterial2D deadMaterial;
     [SerializeField] PolygonCollider2D polygonCollider2D;
     [SerializeField] BoxCollider2D boxCollider2d;
     [SerializeField] Animator animator;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject deadBody;
+    [SerializeField] Transform gun;
+    [SerializeField] Transform deathPosition;
 
     [SerializeField] float moveSpeed = 5;
     [SerializeField] float jumpHeight = 5;
@@ -21,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     float jumpBufferTimer;
     bool isGrounded;
     bool isAlive = true;
+    
+    public float deathScale;
 
 
     void Start()
@@ -32,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!isAlive){return;}
         Move();
+        Shoot();
         Jump();
         ClimbLadder();
         Die();
@@ -45,6 +53,12 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isRunning", playerHasHorizontalSpeed);
         if(playerHasHorizontalSpeed){
             transform.localScale = new Vector2 (Mathf.Sign(rb2d.velocity.x), 1f);
+        }
+    }
+
+    void Shoot(){
+        if(Input.GetButtonDown("Fire1")){
+            Instantiate(bullet, gun.position, transform.rotation);
         }
     }
 
@@ -93,13 +107,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Die(){
-        if(polygonCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy"))){
-            rb2d.velocity = new Vector2(transform.localScale.x *-7.5f, 7.5f);
-            polygonCollider2D.sharedMaterial = dead;
-            polygonCollider2D.sharedMaterial = dead;
+        if(polygonCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards", "Water"))){
+            // polygonCollider2D.sharedMaterial = deadMaterial;
+            deathScale = transform.localScale.x;
             isAlive = false;
             animator.SetTrigger("isDead");
+            if(polygonCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards"))){
+                // rb2d.velocity = new Vector2(transform.localScale.x *-7.5f, 7.5f);
+                Destroy(gameObject);
+                Instantiate(deadBody, deathPosition.position, deathPosition.rotation);
+            }
         }
+    }
+
+    public bool GetAlive(){
+        return isAlive;
     }
 }
 
