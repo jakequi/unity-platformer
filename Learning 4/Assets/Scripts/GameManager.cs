@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     }
 
     void Restart(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextLevel(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }

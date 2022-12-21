@@ -14,7 +14,6 @@ public class EnemyMovement : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        if(other.tag != "Platforms"){return;}
         moveSpeed = -moveSpeed;
         transform.localScale = new Vector2 (-(Mathf.Sign(rb2d.velocity.x)), 1f);
     }

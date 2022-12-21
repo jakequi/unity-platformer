@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
     void Die(){
         if(polygonCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards", "Water"))){
-            // polygonCollider2D.sharedMaterial = deadMaterial;
+            polygonCollider2D.sharedMaterial = deadMaterial;
             deathScale = transform.localScale.x;
             isAlive = false;
             animator.SetTrigger("isDead");
